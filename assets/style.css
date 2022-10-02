@@ -1,0 +1,17 @@
+html,
+body,
+main {
+  height: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+body {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
