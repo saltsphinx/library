@@ -1,6 +1,13 @@
+:root {
+  --additional-space: 0.8rem;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 html,
-body,
-main {
+body {
   height: 100%;
 }
 
@@ -12,6 +19,189 @@ body {
   margin: 0;
 }
 
+.header-text {
+  font-size: 2rem;
+}
+
+.header-text > span {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+body {
+  background: #757165;
+  color: antiquewhite;
+}
+
+body > * {
+  padding-left: 1rem;
+}
+
+header {
+  padding: 0.5rem;
+  padding-left: calc(1rem + var(--additional-space));
+  padding-top: 0.3rem;
+  background: #819f62;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  align-self: center;
+  justify-self: center;
+  background: #c7ca71;
+  padding: 6rem 0;
+  width: 25rem;
+  border-radius: 10px;
+  gap: 0.2rem;
+}
+
+.form-container > *:not(:last-child) {
+  /* margin-bottom: 0.2rem; */
+}
+
+.form-container > p {
+  color: #3d3d3d;
+}
+
+.form-container > .confirm {
+  width: 4rem;
+  border: none;
+  border-radius: 2px;
+  background: antiquewhite;
+}
+
+.exit-button {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  right: 10px;
+  top: 8px;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0;
+  padding-left: var(--additional-space);
+  border-top-left-radius: 10px;
+  background: #3d3d3d;
+}
+
+.label-container {
+  display: flex;
+  padding-left: var(--additional-space);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
+  border-bottom-left-radius: 3px;
+  background: #3d3d3d;
+}
+
+.title,
+.author {
+  width: 16rem;
+}
+
+.pages,
+.hasRead,
+.label-container > .remove {
+  width: 9rem;
+}
+
+.book > .hasRead {
+  margin-right: 8rem;
+}
+
+.book > .remove {
+  padding: 0;
+  border: 0;
+  background: #3d3d3d;
+  color: antiquewhite;
+  text-decoration: underline;
+  font-size: 1.1rem;
+  cursor: pointer
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+  background: #f9e479;
+  color: #3d3d3d;
+}
+
+input:checked::before {
+  content: '✓';
+  vertical-align: middle;
+}
+
+.book-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.book {
+  display: flex;
+  padding-top: 0.35rem;
+  padding-left: var(--additional-space);
+  padding-bottom: 0.3rem;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  background: #3d3d3d;
+}
+
+.book:not(:last-child) {
+  margin-bottom: 0.2rem;
+}
+
+.book:last-child {
+  border-bottom-left-radius: 10px;
+}
+
 .hidden {
   display: none;
+}
+
+.book-button {
+  border: solid 1px antiquewhite;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.1rem;
+  margin-left: 0.8rem;
+  font-size: 1.2rem;
+  line-height: 10px;
+  background: #3d3d3d;
+  color: antiquewhite;
+  cursor: pointer;
+}
+
+.book-button:hover {
+  background: #4d4c4c;
+}
+
+.book-button:active {
+  font-size: 1rem;
+}
+form > div {
+  display: flex;
+}
+
+form > div > label {
+  width: 6rem;
 }

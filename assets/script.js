@@ -1,7 +1,14 @@
 const bookArr = [];
 
-const bookContainer = document.querySelector(".book-container")
-const bookTemplate = document.querySelector(".book.hidden")
+const bookContainer = document.querySelector(".book-container");
+const bookTemplate = document.querySelector(".book.hidden");
+const formContainer = document.querySelector(".form-container");
+const formSubmitButton = document.querySelector(".submit");
+const addBookButton = document.querySelector(".book-button");
+
+addBookButton.addEventListener("click", toggleFormEvent);
+formSubmitButton.addEventListener("click", addBookEvent)
+document.querySelector(".exit-button").addEventListener("click", toggleFormEvent);
 
 function Book(title, author, pages, hasRead) {
   this.title = title;
@@ -10,22 +17,53 @@ function Book(title, author, pages, hasRead) {
   this.hasRead = hasRead;
 }
 
-Book.addBook = function(title = "n/a", author = "n/a", pages = "n/a", hasRead = "n/a") {
-  bookArr.push(new Book(...Object.values(arguments)));
+function addBookEvent() {
+    const newBook = new Book;
+    const formFields = document.querySelectorAll("form input");
+
+    formFields.forEach(field => {
+      if (field.name == "hasRead") {
+        field.checked ? newBook.hasRead = true : newBook.hasRead = false;
+      } else {
+        newBook[field.name] = field.value
+      }
+    });
+
+    bookArr.push(newBook);
+    cloneTemplate(newBook);
+    toggleFormEvent();
+}
+
+function resetForm() {
+  formContainer.querySelector("form").reset();
+}
+
+function removeBookEvent(book, node) {
+  bookArr.splice(bookArr.findIndex(i => i == book), 1);
+  node.remove();
+}
+
+function toggleReadEvent(book, e) {
+  book.hasRead = !book.hasRead;
+  console.log(e)
+  e.target.checked = book.hasRead;
+}
+
+function toggleFormEvent() {
+  resetForm();
+  formContainer.classList.toggle("hidden");
+}
+
+function cloneTemplate(book) {
   const tempClone = bookTemplate.cloneNode(true);
   tempClone.classList.toggle("hidden");
 
-  const cloneChildren = tempClone.childNodes;
-  for (let i = 0; i < cloneChildren.length; i++) {
-    const child = cloneChildren[i];
+  tempClone.querySelector(".title").textContent = book.title;
+  tempClone.querySelector(".author").textContent = book.author;
+  tempClone.querySelector(".pages").textContent = book.pages;
+  tempClone.querySelector(".hasRead").checked = book.hasRead;
 
-    if (child.nodeName == "INPUT") {
-      child.checked = arguments[i];
-    }
-
-    child.textContent = arguments[i];
-  }
-
+  tempClone.querySelector(".remove").addEventListener("click", _ => removeBookEvent(book, tempClone));
+  tempClone.querySelector(".hasRead").addEventListener("click", e => toggleReadEvent(book, e));
   bookContainer.appendChild(tempClone);
-  return [bookArr.slice(-1), tempClone];
 }
