@@ -38,14 +38,14 @@ function resetForm() {
   formContainer.querySelector("form").reset();
 }
 
-function removeBookEvent(book, node) {
+function removeBookEvent(book) {
+  console.log(this)
   bookArr.splice(bookArr.findIndex(i => i == book), 1);
-  node.remove();
+  this.remove();
 }
 
 function toggleReadEvent(book, e) {
   book.hasRead = !book.hasRead;
-  console.log(e)
   e.target.checked = book.hasRead;
 }
 
@@ -63,7 +63,7 @@ function cloneTemplate(book) {
   tempClone.querySelector(".pages").textContent = book.pages;
   tempClone.querySelector(".hasRead").checked = book.hasRead;
 
-  tempClone.querySelector(".remove").addEventListener("click", _ => removeBookEvent(book, tempClone));
-  tempClone.querySelector(".hasRead").addEventListener("click", e => toggleReadEvent(book, e));
+  tempClone.querySelector(".remove").addEventListener("click", removeBookEvent.bind(tempClone, book));
+  tempClone.querySelector(".hasRead").addEventListener("click", toggleReadEvent.bind(tempClone, book));
   bookContainer.appendChild(tempClone);
 }
