@@ -10,11 +10,13 @@ addBookButton.addEventListener("click", toggleFormEvent);
 formSubmitButton.addEventListener("click", addBookEvent)
 document.querySelector(".exit-button").addEventListener("click", toggleFormEvent);
 
-function Book(title, author, pages, hasRead) {
+class Book {
+  constructor(title, author, pages, hasRead) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.hasRead = hasRead;
+  }
 }
 
 function addBookEvent() {
